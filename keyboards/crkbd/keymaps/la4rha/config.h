@@ -52,3 +52,18 @@ KC_NO, K20,   K21,   K22,   K23,   K24,          K25,   K26,   K27,   K28,   K29
 #define OLED_FONT_H "glcdfont.c"
 // #define OLED_FONT_WIDTH 5
 // #define OLED_FONT_HEIGHT 7
+
+#ifdef RGBLIGHT_ENABLE
+    #undef RGBLED_NUM
+    #define RGBLED_NUM 12
+//    #define RGBLIGHT_ANIMATIONS
+    #define RGBLIGHT_SLEEP
+    #define RGBLIGHT_SPLIT
+    #define RGBLIGHT_LIMIT_VAL 120
+    #define RGBLIGHT_HUE_STEP 8
+    #define RGBLIGHT_SAT_STEP 8
+    #define RGBLIGHT_VAL_STEP 8
+
+    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+//    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#endif
