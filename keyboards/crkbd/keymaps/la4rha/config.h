@@ -49,6 +49,6 @@ KC_NO, K20,   K21,   K22,   K23,   K24,          K25,   K26,   K27,   K28,   K29
 #undef MOUSEKEY_TIME_TO_MAX
 #define MOUSEKEY_TIME_TO_MAX    64
 
-#define OLED_FONT_H "keyboards/crkbd/keymaps/soundmonster/glcdfont.c"
+#define OLED_FONT_H "glcdfont.c"
 // #define OLED_FONT_WIDTH 5
 // #define OLED_FONT_HEIGHT 7
