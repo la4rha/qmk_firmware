@@ -57,14 +57,19 @@ KC_NO, K20,   K21,   K22,   K23,   K24,          K25,   K26,   K27,   K28,   K29
     #undef RGBLED_NUM
     #define RGBLED_NUM 12
 //    #define RGBLIGHT_ANIMATIONS
-    #define RGBLIGHT_SLEEP
+#    define RGBLED_SPLIT \
+        { 6, 6 }
     #define RGBLIGHT_SPLIT
+    #define RGBLIGHT_SLEEP
     #define RGBLIGHT_LIMIT_VAL 120
     #define RGBLIGHT_HUE_STEP 8
     #define RGBLIGHT_SAT_STEP 8
     #define RGBLIGHT_VAL_STEP 8
 
-    #define RGBLIGHT_MODE_STATIC_LIGHT
+    #define RGBLIGHT_DEFAULT_HUE 200
+    #define RGBLIGHT_LAYERS
+
+    #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_STATIC_LIGHT
 //    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
 //    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #endif

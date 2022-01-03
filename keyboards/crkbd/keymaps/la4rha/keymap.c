@@ -103,22 +103,22 @@ void render_logo(void) {
 
 void render_layer_state(void) {
 	// BASE, BUTTON, MEDIA, NAV, MOUSE, SYM, NUM, FUN
-	if(layer_state_is(BASE)) {
+	if (layer_state_is(BASE)) {
 		oled_write_P(PSTR("BASE "), false);
-	} else if(layer_state_is(BUTTON)) {
-		oled_write_P(PSTR(" BTN "), false);
-	} else if(layer_state_is(MEDIA)) {
-		oled_write_P(PSTR("MEDIA"), false);
-	} else if(layer_state_is(NAV)) {
+	} else if (layer_state_is(NAV)) {
 		oled_write_P(PSTR(" NAV "), false);
-	} else if(layer_state_is(MOUSE)) {
+	} else if (layer_state_is(MOUSE)) {
 		oled_write_P(PSTR("MOUSE"), false);
-	} else if(layer_state_is(SYM)) {
-		oled_write_P(PSTR(" SYM "), false);
-	} else if(layer_state_is(NUM)) {
+	} else if (layer_state_is(MEDIA)) {
+		oled_write_P(PSTR("MEDIA"), false);
+	} else if (layer_state_is(NUM)) {
 		oled_write_P(PSTR(" NUM "), false);
-	} else if(layer_state_is(FUN)) {
+	} else if (layer_state_is(SYM)) {
+		oled_write_P(PSTR(" SYM "), false);
+	} else if (layer_state_is(FUN)) {
 		oled_write_P(PSTR("FUNC "), false);
+	} else if (layer_state_is(BUTTON)) {
+		oled_write_P(PSTR(" BTN "), false);
 	}
 }
 
@@ -170,3 +170,71 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
+#ifdef RGBLIGHT_ENABLE
+const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_PURPLE}
+);
+
+const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_YELLOW}
+);
+
+const rgblight_segment_t PROGMEM mouse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_AZURE}
+);
+
+const rgblight_segment_t PROGMEM media_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_RED}
+);
+
+const rgblight_segment_t PROGMEM num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_BLUE}
+);
+
+const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_GREEN}
+);
+
+const rgblight_segment_t PROGMEM fun_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_PINK}
+);
+
+const rgblight_segment_t PROGMEM button_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 12, HSV_ORANGE}
+);
+
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    base_layer,
+    nav_layer,
+    mouse_layer,
+    media_layer,
+    num_layer,
+    sym_layer,
+    fun_layer,
+    button_layer
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+};
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, BASE));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(2, layer_state_cmp(state, NAV));
+    rgblight_set_layer_state(3, layer_state_cmp(state, MOUSE));
+    rgblight_set_layer_state(4, layer_state_cmp(state, MEDIA));
+    rgblight_set_layer_state(5, layer_state_cmp(state, NUM));
+    rgblight_set_layer_state(6, layer_state_cmp(state, SYM));
+    rgblight_set_layer_state(7, layer_state_cmp(state, FUN));
+    rgblight_set_layer_state(8, layer_state_cmp(state, BUTTON));
+    return state;
+}
+#endif
