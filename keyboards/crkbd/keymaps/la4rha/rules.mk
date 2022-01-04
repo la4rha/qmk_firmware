@@ -10,6 +10,9 @@ MOUSEKEY_ENABLE = yes # Mouse keys
 EXTRAKEY_ENABLE = yes # Audio control and System control
 AUTO_SHIFT_ENABLE = yes # Auto Shift
 
+# Static linking			https://docs.qmk.fm/#/squeezing_avr
+LTO_ENABLE = yes
+
 #SRC += manna-harbour_miryoku.c # keymap
 
 # alternative layouts:
