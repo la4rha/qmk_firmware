@@ -1,3 +1,4 @@
+
 // Copyright 2019 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 // generated -*- buffer-read-only: t -*-
@@ -173,40 +174,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef RGBLIGHT_ENABLE
 const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_PURPLE}
+    {0, 12, HSV_PURPLE}
 );
 
 const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_YELLOW}
+    {0, 12, HSV_CYAN}
 );
 
 const rgblight_segment_t PROGMEM mouse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_AZURE}
+    {0, 12, HSV_YELLOW}
 );
 
 const rgblight_segment_t PROGMEM media_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_RED}
+    {0, 12, HSV_RED}
 );
 
 const rgblight_segment_t PROGMEM num_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_BLUE}
+    {0, 12, HSV_BLUE}
 );
 
 const rgblight_segment_t PROGMEM sym_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_GREEN}
+    {0, 12, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM fun_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_PINK}
+    {0, 12, HSV_PINK}
 );
 
 const rgblight_segment_t PROGMEM button_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 12, HSV_ORANGE}
+    {0, 12, HSV_ORANGE}
 );
 
 
 // Now define the array of layers. Later layers take precedence
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     base_layer,
     nav_layer,
     mouse_layer,
@@ -219,22 +220,22 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
-    rgblight_layers = my_rgb_layers;
+    rgblight_layers = rgb_layers;
 };
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, BASE));
+    rgblight_set_layer_state(0, layer_state_cmp(state, BASE));
     return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(2, layer_state_cmp(state, NAV));
-    rgblight_set_layer_state(3, layer_state_cmp(state, MOUSE));
-    rgblight_set_layer_state(4, layer_state_cmp(state, MEDIA));
-    rgblight_set_layer_state(5, layer_state_cmp(state, NUM));
-    rgblight_set_layer_state(6, layer_state_cmp(state, SYM));
-    rgblight_set_layer_state(7, layer_state_cmp(state, FUN));
-    rgblight_set_layer_state(8, layer_state_cmp(state, BUTTON));
+    rgblight_set_layer_state(1, layer_state_cmp(state, NAV));
+    rgblight_set_layer_state(2, layer_state_cmp(state, MOUSE));
+    rgblight_set_layer_state(3, layer_state_cmp(state, MEDIA));
+    rgblight_set_layer_state(4, layer_state_cmp(state, NUM));
+    rgblight_set_layer_state(5, layer_state_cmp(state, SYM));
+    rgblight_set_layer_state(6, layer_state_cmp(state, FUN));
+    rgblight_set_layer_state(7, layer_state_cmp(state, BUTTON));
     return state;
 }
 #endif
